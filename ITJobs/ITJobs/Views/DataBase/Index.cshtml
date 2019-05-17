@@ -1,0 +1,27 @@
+﻿@model IEnumerable<DataBase>
+<h2>
+    Baze podataka
+    <a asp-action="Add" class="btn btn-primary btn-sm">Kreiraj novu bazu</a>
+</h2>
+
+@if (@ViewData["Success"] != null) {
+<div class="alert alert-success">
+    baza kreirana</div>
+}
+@if (!Model.Any())
+{
+<h5 style="color: #778899">Trenutno nema baza</h5>
+}
+
+<ul class="list-group">
+@foreach (DataBase g in Model)
+  {
+    <li class="list-group-item">
+@g.Name
+<a asp-action="Edit" asp-route-id="@g.Id" class="btn btn-secondary btn-sm">Izmjeni</a>
+<form asp-action="Delete" asp-route-id="@g.Id" method="POST" style="display: inline-block">
+    <button type="submit" class="btn btn-danger btn-sm">Obriši</button>
+</form>
+</li>
+}
+</ul>

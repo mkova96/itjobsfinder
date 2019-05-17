@@ -3667,11 +3667,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\MARIO\\source\\repos\\ITJobs\\ITJobs.DLL\\ITJobs.DLL.csproj",
+      "projectUniqueName": "C:\\Users\\MARIO\\source\\repos\\ITJobs\\ITJobs.DLL\\ITJobs.DLL.csproj",
       "projectName": "ITJobs.DLL",
-      "projectPath": "c:\\Users\\MARIO\\source\\repos\\ITJobs\\ITJobs.DLL\\ITJobs.DLL.csproj",
+      "projectPath": "C:\\Users\\MARIO\\source\\repos\\ITJobs\\ITJobs.DLL\\ITJobs.DLL.csproj",
       "packagesPath": "C:\\Users\\MARIO\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\MARIO\\source\\repos\\ITJobs\\ITJobs.DLL\\obj\\",
+      "outputPath": "C:\\Users\\MARIO\\source\\repos\\ITJobs\\ITJobs.DLL\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -3690,8 +3690,8 @@
       "frameworks": {
         "netcoreapp2.0": {
           "projectReferences": {
-            "c:\\Users\\MARIO\\source\\repos\\ITJobs\\ITJobs.Model\\ITJobs.Model.csproj": {
-              "projectPath": "c:\\Users\\MARIO\\source\\repos\\ITJobs\\ITJobs.Model\\ITJobs.Model.csproj"
+            "C:\\Users\\MARIO\\source\\repos\\ITJobs\\ITJobs.Model\\ITJobs.Model.csproj": {
+              "projectPath": "C:\\Users\\MARIO\\source\\repos\\ITJobs\\ITJobs.Model\\ITJobs.Model.csproj"
             }
           }
         }

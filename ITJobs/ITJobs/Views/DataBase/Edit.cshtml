@@ -1,0 +1,27 @@
+﻿@{
+    ViewData["Title"] = "Izmjeni tvrtku";
+}
+@model EditDataBaseViewModel
+<form asp-action="Update" asp-route-id="@Model.DataBase.Id" method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    @if (@ViewData["Success"] != null)
+    {
+        <div class="alert alert-success">Tvrtka spremljena</div>
+    }
+    <a asp-action="Index" title="Povratak na prethodnu stranu">
+        <i class="arrow-left"></i>
+    </a>
+    <h3>Izmjeni tvrtku</h3>
+    <div class="form-group">
+        <label asp-for="DataBase.Name">Ime</label>
+        <input type="text" class="form-control" asp-for="DataBase.Name" placeholder="Ime baze podataka">
+    </div>
+    
+
+    <button type="submit" class="btn btn-primary">Spremi</button>
+    <a asp-action="Index">
+        <button type="button" class="btn btn-secondary">Odustani</button>
+    </a>
+
+
+</form>

@@ -43,7 +43,13 @@ namespace ITJobs
 
             app.UseStaticFiles();
 
-            app.UseMvc();
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller=UnregHome}/{action=Index}/{id?}");
+            });
+            
         }
     }
 }
