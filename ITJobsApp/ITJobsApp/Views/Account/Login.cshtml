@@ -1,0 +1,46 @@
+﻿@model LoginViewModel
+@inject SignInManager<User> SignInManager
+@{
+    ViewData["Title"] = "Prijava";
+}
+<h2>@ViewData["Title"]</h2>
+<section>
+    <form asp-route-returnurl="@ViewData["ReturnUrl"]" method="post">
+        <h4>Koristite lokalni račun za prijavu.</h4>
+        <hr />
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="Email"></label>
+            <input asp-for="Email" id="da" class="form-control" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Password">Lozinka</label>
+            <input asp-for="Password" id="da" class="form-control" />
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <div class="checkbox">
+                <label asp-for="RememberMe">
+                    <input asp-for="RememberMe" />
+                    Zapamti me?
+                </label>
+            </div>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Prijava</button>
+        </div>
+        <div class="form-group">
+            <p>
+                <a asp-action="RegisterIndividual" asp-route-returnurl="@ViewData["ReturnUrl"]">Registriraj se kao korisnik</a>
+            </p>
+            <p>
+                <a asp-action="RegisterCompany" asp-route-returnurl="@ViewData["ReturnUrl"]">Registriraj se kao tvrtka</a>
+            </p>
+        </div>
+    </form>
+</section>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

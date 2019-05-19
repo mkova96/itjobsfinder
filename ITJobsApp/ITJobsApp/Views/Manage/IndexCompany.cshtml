@@ -1,0 +1,74 @@
+﻿@model IndexCompanyViewModel
+<h1>Uredi profil</h1>
+
+<div class="row">
+    <div class="col-md-6">
+        <form method="post">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name"></label>
+                <input asp-for="Name" id="da" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Email"></label>
+                <input asp-for="Email" id="da" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Address"></label>
+                <input asp-for="Address" id="da" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="City"></label>
+                <input asp-for="City" id="da" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="PhoneNumber"></label>
+                <input asp-for="PhoneNumber" id="da" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="About">Kratka biografija</label>
+                <textarea asp-for="About" class="form-control"></textarea>
+            </div>
+            <div class="form-group">
+                <label asp-for="WebAddress">Web adresa</label>
+                <input asp-for="WebAddress" id="da" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="LogoLink">Link logoa tvrtke  </label>
+                <input asp-for="LogoLink" class="form-control"></input>
+            </div>
+            <div class="form-group">
+                <label asp-for="Established">Datum osnutka tvrtke</label>
+                <input asp-for="Established" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="BussinesType">Vrsta poslovanja:</label>
+                <input asp-for="BussinesType" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="NumberOfEmployees">Broj radnika</label>
+                <input asp-for="NumberOfEmployees" class="form-control" />
+            </div>
+
+
+            <div class="form-group">
+                <b>Hrvatska</b>
+            </div>
+            <button type="submit" class="btn btn-primary">Spremi</button>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+
+}
+
+<style>
+    #da {
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+</style>
+

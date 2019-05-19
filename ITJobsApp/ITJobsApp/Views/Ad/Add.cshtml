@@ -1,0 +1,38 @@
+﻿@model AdViewModel
+<form asp-action="Create" method="POST">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <h3>
+        <a asp-action="Index" title="Povratak na prethodnu stranu">
+            <i class="arrow-left"></i>
+        </a>
+        Stvori oglas
+    </h3>
+    <div class="form-group">
+        <label asp-for="Title">Naziv </label>
+        <input type="text" class="form-control" asp-for="Title">
+    </div>
+    <div class="form-group">
+        <label asp-for="AdCategoryId">Kategorija oglasa</label>
+        <select asp-for="AdCategoryId" id="ne" asp-items="@(new SelectList((IEnumerable<AdCategory>) @ViewData["Cats"],"Id", "Name"))" class="form-control"></select>
+    </div>
+    <div class="form-group">
+        <label asp-for="JobSummary">Opis posla</label>
+        <textarea type="text" class="form-control" asp-for="JobSummary"></textarea>
+    </div>
+    <div class="form-group">
+        <label asp-for="RequiredSkills">Potrebne vještine</label>
+        <textarea type="text" class="form-control" asp-for="RequiredSkills"></textarea>
+    </div>
+    <div class="form-group">
+        <label asp-for="Location">Lokacija </label>
+        <input type="text" class="form-control" asp-for="Location">
+    </div>
+    <div class="form-group">
+        <label asp-for="NumberOfWorkingHours">Broj radnih sati tjedno: </label>
+        <input type="text" class="form-control" asp-for="NumberOfWorkingHours">
+    </div>
+    <button type="submit" class="btn btn-primary">Spremi</button>
+    <a asp-action="Index">
+        <button type="button" class="btn btn-secondary">Odustani</button>
+    </a>
+</form>

@@ -1,0 +1,74 @@
+﻿@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+
+
+@if (SignInManager.IsSignedIn(User))
+{<ul class="nav navbar-nav navbar-right">
+    <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Moj profil<span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu" id="robo">
+
+            @if (User.IsInRole("Individual"))
+            {
+                <li><a asp-controller="Manage" asp-action="IndexIndividual">Uredi profil</a></li>
+                <li><a asp-controller="Manage" asp-action="Index">Moje prijave na oglase</a></li>
+                <li><a asp-controller="Manage" asp-action="ChangePassword">Promijeni lozinku</a></li>
+                <li>
+                    <div id="poly">
+                        <form asp-controller="Account" asp-action="Logout" method="post" id="logoutForm">
+
+                            <button type="submit" class="btn btn-link nav-link"><text id="moly">Odjava</text></button>
+                        </form>
+                    </div>
+
+
+                </li>
+            }
+            else if (User.IsInRole("Company"))
+            {
+                <li><a asp-controller="Manage" asp-action="IndexCompany">Uredi profil</a></li>
+                <li><a asp-controller="Ad" asp-action="MyAds">Moji oglasi</a></li>
+                <li><a asp-controller="Manage" asp-action="ChangePassword">Promijeni lozinku</a></li>
+                <li>
+                    <div id="poly">
+                        <form asp-controller="Account" asp-action="Logout" method="post" id="logoutForm">
+
+                            <button type="submit" class="btn btn-link nav-link"><text id="moly">Odjava</text></button>
+                        </form>
+                    </div>
+
+
+                </li>
+            }
+        </ul>
+    </li>
+    @if (User.IsInRole("Company"))
+    {
+        <li><a asp-controller="Ad" asp-action="Add">Novi oglas</a></li>
+    }
+</ul>
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li class="nav-item"><a asp-controller="Account" asp-action="Login" class="nav-link">Prijava/Registracija</a></li>
+    </ul>
+}
+
+<style>
+
+
+    #robo {
+        height: auto !important;
+        overflow: visible !important;
+    }
+
+    #poly {
+        padding: 3px;
+    }
+
+    #moly {
+        font-size: 17px;
+        color: #f2f2f2;
+    }
+</style>

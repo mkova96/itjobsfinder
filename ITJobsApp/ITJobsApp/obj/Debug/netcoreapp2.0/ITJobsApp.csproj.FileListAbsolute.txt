@@ -1,0 +1,16 @@
+C:\Users\MARIO\source\repos\ITJobsApp\ITJobsApp\bin\Debug\netcoreapp2.0\ITJobs.Model.dll
+C:\Users\MARIO\source\repos\ITJobsApp\ITJobsApp\bin\Debug\netcoreapp2.0\ITJobsApp.DLL.dll
+C:\Users\MARIO\source\repos\ITJobsApp\ITJobsApp\obj\Debug\netcoreapp2.0\ITJobsApp.csprojAssemblyReference.cache
+C:\Users\MARIO\source\repos\ITJobsApp\ITJobsApp\obj\Debug\netcoreapp2.0\ITJobsApp.csproj.CoreCompileInputs.cache
+C:\Users\MARIO\source\repos\ITJobsApp\ITJobsApp\obj\Debug\netcoreapp2.0\ITJobsApp.AssemblyInfoInputs.cache
+C:\Users\MARIO\source\repos\ITJobsApp\ITJobsApp\obj\Debug\netcoreapp2.0\ITJobsApp.AssemblyInfo.cs
+C:\Users\MARIO\source\repos\ITJobsApp\ITJobsApp\bin\Debug\netcoreapp2.0\ITJobsApp.deps.json
+C:\Users\MARIO\source\repos\ITJobsApp\ITJobsApp\bin\Debug\netcoreapp2.0\ITJobsApp.runtimeconfig.json
+C:\Users\MARIO\source\repos\ITJobsApp\ITJobsApp\bin\Debug\netcoreapp2.0\ITJobsApp.runtimeconfig.dev.json
+C:\Users\MARIO\source\repos\ITJobsApp\ITJobsApp\bin\Debug\netcoreapp2.0\ITJobsApp.dll
+C:\Users\MARIO\source\repos\ITJobsApp\ITJobsApp\bin\Debug\netcoreapp2.0\ITJobsApp.pdb
+C:\Users\MARIO\source\repos\ITJobsApp\ITJobsApp\bin\Debug\netcoreapp2.0\ITJobs.Model.pdb
+C:\Users\MARIO\source\repos\ITJobsApp\ITJobsApp\bin\Debug\netcoreapp2.0\ITJobsApp.DLL.pdb
+C:\Users\MARIO\source\repos\ITJobsApp\ITJobsApp\obj\Debug\netcoreapp2.0\ITJobsApp.csproj.CopyComplete
+C:\Users\MARIO\source\repos\ITJobsApp\ITJobsApp\obj\Debug\netcoreapp2.0\ITJobsApp.dll
+C:\Users\MARIO\source\repos\ITJobsApp\ITJobsApp\obj\Debug\netcoreapp2.0\ITJobsApp.pdb
