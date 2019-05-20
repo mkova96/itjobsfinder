@@ -140,7 +140,7 @@ namespace ITJobsApp.Controllers
 
                     TempData[Constants.Message] = $"Uspješno ste se registrirali";
                     TempData[Constants.ErrorOccurred] = false;
-                    return RedirectToAction("Index", "DataBase");
+                    return RedirectToAction("Index", "Ad");
                 }
                 AddErrors(result);
             }
@@ -205,7 +205,7 @@ namespace ITJobsApp.Controllers
 
                     TempData[Constants.Message] = $"Uspješno ste se registrirali";
                     TempData[Constants.ErrorOccurred] = false;
-                    return RedirectToAction("Index", "DataBase");
+                    return RedirectToAction("Index", "Ad");
                 }
                 AddErrors(result);
             }
@@ -226,7 +226,7 @@ namespace ITJobsApp.Controllers
             }
             else
             {
-                return RedirectToAction(nameof(DataBaseController.Index), "DataBase");
+                return RedirectToAction(nameof(DataBaseController.Index), "Ad");
             }
         }
 
@@ -269,7 +269,7 @@ namespace ITJobsApp.Controllers
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
-                    return RedirectToAction("Index", "DataBase"); ;
+                    return RedirectToAction("Index", "Ad"); ;
                 }
                 if (result.IsLockedOut)
                 {
@@ -301,6 +301,12 @@ namespace ITJobsApp.Controllers
             await _signInManager.SignOutAsync();
             _logger.LogInformation("User logged out.");
             return RedirectToAction("Index", "UnregHome");
+        }
+
+        public ViewResult Show(string id)
+        {
+            Individual drug = _databaseContext.Individual.Where(i => i.Id.Equals(id.ToString())).FirstOrDefault();
+            return View(drug);
         }
     }
 

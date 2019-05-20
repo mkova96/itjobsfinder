@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - ITJobsApp</title>
+    <title>@ViewData["Title"] - IT Jobs Finder</title>
 
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
@@ -27,15 +27,12 @@
                     <span class="icon-bar"></span>
 
                 </button>
-                <a asp-page="/Index" class="navbar-brand">ITJobsApp</a>
+                <a asp-controller="UnregHome" asp-action="Index" class="navbar-brand">IT Jobs Finder</a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a asp-page="/Index">Home</a></li>
-                    <li><a asp-page="/About">About</a></li>
-                    <li><a asp-page="/Contact">Contact</a></li>
                     @await Html.PartialAsync("_LoginPartial")
-
+                    @await Html.PartialAsync("Search")
                 </ul>
             </div>
         </div>
@@ -44,7 +41,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; 2019 - ITJobsApp</p>
+            <p>&copy; 2019 - IT Jobs Finder</p>
         </footer>
     </div>
 

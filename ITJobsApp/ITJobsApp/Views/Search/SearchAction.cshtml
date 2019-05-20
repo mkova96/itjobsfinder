@@ -1,0 +1,51 @@
+﻿@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+
+@{
+    ViewData["Title"] = "Rezultati pretrage";
+}
+@model SearchActionViewModel
+<h1>Rezultati</h1>
+<hr />
+@if (!SignInManager.IsSignedIn(User))
+{
+    <h2>Morate biti prijavljeni za pretragu</h2>
+}
+else
+{
+    @if (Model != null)
+    {
+        <ul class="list-group">
+
+            @if (Model.Company != null && Model.Company.Any())
+            {
+                foreach (var c in Model.Company)
+                {
+                    <h4>
+                        <a asp-controller="Company" asp-action="Show" asp-route-id="@c.Id">
+                            @c.Name
+                        </a>
+                    </h4>
+                }
+            }
+            @if (Model.Ad != null && Model.Ad.Any())
+            {
+                foreach (var c in Model.Ad)
+                {
+                    <h4>
+                        <a asp-controller="Ad" asp-action="Show" asp-route-id="@c.Id">
+                            @c.Title (@c.AdCategory.Name posao)
+                        </a>
+                    </h4>
+                }
+            }
+        </ul>
+    }
+    else
+    {
+        <h4>Nema rezultata o postavljenom upitu.</h4>
+    }
+
+}
+
+

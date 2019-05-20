@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<Ad>
 <h2>
-    Oglasi
+    Svi oglasi
 </h2>
 @if (!Model.Any())
 {
@@ -12,13 +12,17 @@
     @foreach (var item in Model)
     {
         <tr data-toggle="collapse" id="xman" data-target="@("#" + item.Id.ToString())" style="cursor:pointer;">
-            <td class="text-center">@item.Title</td>
+            <td class="text-center"><b>@item.Title</b></td>
             <td class="text-center">
-                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm">✎</a>
-                <form asp-action="Delete" asp-route-id="@item.Id"
-                      method="POST" style="display: inline-block">
-                    <button type="submit" class="btn btn-danger btn-sm">✘</button>
-                </form>
+                @if (item.Company.Id.ToString().Equals(@ViewData["id"]))
+                {
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm">✎</a>
+                    <form asp-action="Delete" asp-route-id="@item.Id"
+                          method="POST" style="display: inline-block">
+                        <button type="submit" class="btn btn-danger btn-sm">✘</button>
+                    </form>
+                }
+
                 @if (User.IsInRole("Individual"))
                 {
                     Boolean x = false;
@@ -35,7 +39,7 @@
                     {
                         <form asp-action="CancelApplyTo" asp-route-id="@item.Id"
                               method="POST" style="display: inline-block">
-                            <button type="submit" class="btn btn-danger btn-sm">Otkazi</button>
+                            <button type="submit" class="btn btn-danger btn-sm">Otkaži prijavu</button>
                         </form>
 
                     }
@@ -44,7 +48,7 @@
 
                         <form asp-action="ApplyTo" asp-route-id="@item.Id"
                               method="POST" style="display: inline-block">
-                            <button type="submit" class="btn btn-danger btn-sm">Prijavi se</button>
+                            <button type="submit" class="btn btn-success btn-sm">Prijavi se</button>
                         </form>
                     }
 
@@ -66,42 +70,45 @@
                                 </div>
 
                                 <div>
-                                    <h4>Tvrtka: <b>@item.Company.Name</b></h4>
+                                    <h4>Firma: <b><a asp-controller="Company" asp-action="Show" asp-route-id="@item.Company.Id">@item.Company.Name</a></b></h4>
                                 </div>
                                 <div>
-                                    <h4><b>@item.AdCategory.Name</b></h4>
+                                    <h4>Vrsta oglasa: <b>@item.AdCategory.Name</b></h4>
                                 </div>
                                 <div>
-                                    <h4>Lokacija:<b>    @item.Location</b></h4>
+                                    <h4>Lokacija: <b>@item.Location</b></h4>
                                 </div>
                                 <div>
-                                    <h4>Broj radnih sati tjedno:<b>    @item.NumberOfWorkingHours</b></h4>
-                                </div>
-                                <div>
-                                    <h4>Zahtjevane vještine:<b>    @item.RequiredSkills</b></h4>
+                                    <h4>Broj radnih sati tjedno: <b>@item.NumberOfWorkingHours</b></h4>
                                 </div>
                             </div>
-                            <div class="column2">
+                            <div class="column">
                                 <div>
                                     <h5><b><center>Opis posla:</center></b></h5>
                                 </div>
                                 <div>
                                     @item.JobSummary
                                 </div>
-                            </div>
-                            <div class="column2">
                                 <div>
-                                    <h5><b><center>Prijavljeni korisnici:</center></b></h5>
-                                </div>
-                                <div>
-                                    @foreach (var x in item.AdIndividual)
-                                    {
-                                        <h1>@x.Individual.Name</h1>
-                                    }
+                                    <h4>Zahtjevane vještine: <b>@item.RequiredSkills</b></h4>
                                 </div>
                             </div>
+                            @if (item.Company.Id.ToString().Equals(@ViewData["id"]))
+                            {
+                                <div class="column2">
+                                    <div>
+                                        <h5><b><center>Prijavljeni korisnici:</center></b></h5>
+                                    </div>
+                                    <div>
+                                        @foreach (var x in item.AdIndividual)
+                                        {
+                                            <h4><a asp-controller="Account" asp-action="Show" asp-route-id="@x.Individual.Id">@x.Individual.Name @x.Individual.Surname</a></h4>
+                                        }
+                                    </div>
+                                </div>
+                            }
 
-                        </div>
+                            </div>
 
                     </div>
                 </div>
@@ -155,21 +162,21 @@
     /* Create two equal columns that floats next to each other */
     .column {
         float: left;
-        width: 35%;
-        padding: 10px;
+        width: 30%;
+        padding: 30px;
         height: 280px; /* Should be removed. Only for demonstration */
     }
 
     .column1 {
         float: left;
-        width: 20%;
+        width: 35%;
         padding: 30px;
         height: 280px; /* Should be removed. Only for demonstration */
     }
 
     .column2 {
         float: left;
-        width: 40%;
+        width: 35%;
         padding: 30px;
         height: 280px; /* Should be removed. Only for demonstration */
     }

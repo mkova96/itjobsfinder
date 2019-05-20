@@ -47,6 +47,18 @@ namespace ITJobsApp.Controllers
             return View(dbs);
         }
 
+        public async Task<ViewResult> MyApplys()
+        {
+            ViewData["Success"] = TempData["Success"];
+            var user = (Individual)await _userManager.GetUserAsync(User);
+            ViewData["id"] = user.Id.ToString();
+            var u = _databaseContext.Individual.Include(t=>t.AdIndividual).Where(t => t.Id.Equals(user.Id)).FirstOrDefault();
+         
+            ICollection<AdIndividual> adi = _databaseContext.AdIndividual.Include(t=>t.Individual).Include(p=>p.Ad).ThenInclude(o=>o.Company)
+                .Include(p => p.Ad).ThenInclude(i=>i.AdCategory).Where(i => i.Individual == u).ToList();
+            return View(adi);
+        }
+
         [Authorize(Roles = "Company")]
         [HttpGet]
         public ViewResult Add()
@@ -149,5 +161,42 @@ namespace ITJobsApp.Controllers
             return RedirectToAction(nameof(Index));
 
         }
+
+        [Authorize(Roles = "Individual")]
+        [HttpPost]
+        public async Task<IActionResult> CancelApplyTo2(int id)
+        {
+            var ad = _databaseContext.Ad.FirstOrDefault(t => t.Id == id);
+            var user = (Individual)await _userManager.GetUserAsync(User);
+
+            var x = _databaseContext.AdIndividual.Where(t => t.Ad == ad).Where(d => d.Individual == user).FirstOrDefault();
+
+            _databaseContext.AdIndividual.Remove(x);
+            _databaseContext.SaveChanges();
+            return RedirectToAction(nameof(MyApplys));
+
+        }
+
+        public async Task<ViewResult> Show(int id)
+        {
+
+            var user = await _userManager.GetUserAsync(User);
+            ViewData["id"] = user.Id.ToString();
+            Ad drug = _databaseContext.Ad.Include(t => t.Company).Include(a => a.AdCategory).
+                Include(i => i.AdIndividual).ThenInclude(i => i.Individual).Where(i => i.Id==id).FirstOrDefault();
+            return View(drug);
+        }
+
+        public async Task<ViewResult> CompanyAds(string id)
+        {
+
+            var user = await _userManager.GetUserAsync(User);
+            ViewData["id"] = user.Id.ToString();
+            IEnumerable<Ad> ads = _databaseContext.Ad.Include(t => t.Company).Include(a => a.AdCategory).
+                Include(i => i.AdIndividual).ThenInclude(i => i.Individual).Where(i => i.Company.Id == id).ToList();
+            return View(ads);
+        }
+
+
     }
 }
