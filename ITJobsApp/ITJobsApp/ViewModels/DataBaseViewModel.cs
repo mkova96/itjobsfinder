@@ -8,7 +8,7 @@ namespace ITJobsApp.ViewModels
 {
     public class DataBaseViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "Naziv baze podataka je obavezan")]
         public string Name { get; set; }
 
     }

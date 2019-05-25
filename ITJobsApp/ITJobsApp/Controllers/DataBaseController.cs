@@ -96,21 +96,17 @@ namespace ITJobsApp.Controllers
             {
                 _databaseContext.DataBase.Remove(ses);
                 _databaseContext.SaveChanges();
-                //TempData[Constants.Message] = $"Mjerna jedinica je obrisana";
-                //TempData[Constants.ErrorOccurred] = false;
+                TempData[Constants.Message] = $"Baza podataka je obrisana";
+                TempData[Constants.ErrorOccurred] = false;
             }
             catch (Exception exc)
             {
-                //TempData[Constants.Message] = $"Mjernu jedinicu nije moguće obrisati jer postoje pakiranja koji ju sadrže.";
-                //TempData[Constants.ErrorOccurred] = true;
+                TempData[Constants.Message] = $"Bazu podataka nije moguće obrisati jer postoje korisnici koji ju sadrže.";
+                TempData[Constants.ErrorOccurred] = true;
             }
-            var x = _databaseContext.ProgrammingLanguage.ToList().Count;
-
             return RedirectToAction(nameof(Index));
 
         }
-        
-
 
     }
 }

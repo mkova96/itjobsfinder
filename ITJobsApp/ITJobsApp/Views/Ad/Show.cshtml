@@ -62,7 +62,10 @@
                                 </div>
 
                                 <div>
-                                    <h4>Firma: <b><a asp-controller="Company" asp-action="Show" asp-route-id="@Model.Company.Id">@Model.Company.Name</a></b></h4>
+                                    <h4>Firma: <a asp-controller="Company" asp-action="Show" asp-route-id="@Model.Company.Id"><b>@Model.Company.Name<b /></a><b> (@Model.Company.BussinesType)</b></h4>
+                                </div>
+                                <div>
+                                    <h4>Mail firme: <b>@item.Company.Email.ToString()</b></h4>
                                 </div>
                                 <div>
                                     <h4>Vrsta oglasa: <b>@Model.AdCategory.Name</b></h4>

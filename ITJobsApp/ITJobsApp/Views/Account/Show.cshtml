@@ -41,6 +41,42 @@
                             <div>
                                 <h4>Vještine: <b>@Model.Skills</b></h4>
                             </div>
+                            <div>
+                                <h4>
+                                    Poznaje programske jezike: @if (Model.IndividualProgrammingLanguages != null)
+                                    {
+                                        @foreach (var s in Model.IndividualProgrammingLanguages)
+                                        {
+                                            <b>@s.ProgrammingLanguage.Name</b>
+
+                                        }
+
+                                    }
+                                    else
+                                    {
+                                        <b>Korisnik ne poznaje nijedan programski jezik</b>
+
+                                    }
+                                </h4>
+                            </div>
+                            <div>
+                                <h4>
+                                    Poznaje baze podataka: @if (Model.IndividualDataBases != null)
+                                    {
+                                        @foreach (var s in Model.IndividualDataBases)
+                                        {
+                                            <b>@s.DataBase.Name</b>
+
+                                        }
+
+                                    }
+                                    else
+                                    {
+                                        <b>Korisnik ne poznaje nijednu bazu podataka</b>
+
+                                    }
+                                </h4>
+                            </div>
                         </div>
                      
 
@@ -98,7 +134,7 @@
     /* Create two equal columns that floats next to each other */
     .column {
         float: left;
-        width: 40%;
+        width: 60%;
         padding: 30px;
         height: 280px; /* Should be removed. Only for demonstration */
     }

@@ -1,0 +1,47 @@
+﻿@model EditAdViewModel
+
+<form asp-action="Update" asp-route-id="@Model.Id" method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <h2>Uredi oglas</h2>
+    <div class="form-group">
+        <label asp-for="Title">Naziv </label>
+        <input type="text" class="form-control" asp-for="Title">
+    </div>
+    <div class="form-group">
+        <label asp-for="AdCategoryId">Kategorija oglasa</label>
+        <select asp-for="AdCategoryId" id="ne" asp-items="@(new SelectList((IEnumerable<AdCategory>) @ViewData["Cats"],"Id", "Name"))" class="form-control"></select>
+    </div>
+    <div class="form-group">
+        <label asp-for="JobSummary">Opis posla</label>
+        <textarea type="text" class="form-control" asp-for="JobSummary"></textarea>
+    </div>
+    <div class="form-group">
+        <label asp-for="RequiredSkills">Potrebne vještine</label>
+        <textarea type="text" class="form-control" asp-for="RequiredSkills"></textarea>
+    </div>
+    <div class="form-group">
+        <label asp-for="Location">Lokacija </label>
+        <input type="text" class="form-control" asp-for="Location">
+    </div>
+    <div class="form-group">
+        <label asp-for="NumberOfWorkingHours">Broj radnih sati tjedno: </label>
+        <input type="text" class="form-control" asp-for="NumberOfWorkingHours">
+    </div>
+    <div class="text-center">
+        <button type="submit" class="btn btn-primary">Spremi</button>
+        <a asp-action="Index">
+            <button type="button" class="btn btn-secondary">Odustani</button>
+        </a>
+    </div>
+
+
+</form>
+
+<style>
+    #da {
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+</style>

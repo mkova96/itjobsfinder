@@ -31,10 +31,24 @@ namespace ITJobsApp.ViewModels
         [Display(Name = "Adresa")]
         public string Address { get; set; }
 
+        [Required(ErrorMessage = "Morate unijeti biografiju")]
         public string About { get; set; }
-        public string City { get; set; }
-        public string Skills { get; set; }
+
+        [Required(ErrorMessage = "Morate unijeti broj telefona")]
+        [DataType(DataType.PhoneNumber)]
         public string PhoneNumber { get; set; }
+
+        [Required(ErrorMessage = "Morate unijeti grad")]
+        [Display(Name = "Grad")]
+        public string City { get; set; }
+
+        [Required(ErrorMessage = "Morate unijeti vještine")]
+        [Display(Name = "Vještine")]
+        public string Skills { get; set; }
+
+        [Required(ErrorMessage = "Datum rođenja je obavezan")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy}", ApplyFormatInEditMode = true)]
         public DateTime DateOfBirth { get; set; }
     }
 }

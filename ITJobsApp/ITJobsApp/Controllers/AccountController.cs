@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -92,31 +93,35 @@ namespace ITJobsApp.Controllers
                     Skills=model.Skills,
                     DateOfBirth=model.DateOfBirth,
                 };
-                dbs = model.DBIds.Select(id => _databaseContext.DataBase.Find(id))
-               .Select(u => new IndividualDataBase { DataBase = u,Individual = user }).ToList();
-
-                pls = model.PLIds.Select(id => _databaseContext.ProgrammingLanguage.Find(id))
-               .Select(u => new IndividualProgrammingLanguage { ProgrammingLanguage = u, Individual = user }).ToList();
-
-                foreach (var dc in dbs)
+                if (model.DBIds!=null)
                 {
-                    var IdbsInDb = _databaseContext.IndividualDataBase.SingleOrDefault(s => s.Individual.Id == dc.Individual.Id && s.DataBase.Id == dc.DataBase.Id);
+                    dbs = model.DBIds.Select(id => _databaseContext.DataBase.Find(id))
+                    .Select(u => new IndividualDataBase { DataBase = u, Individual = user }).ToList();
+                    foreach (var dc in dbs)
+                    {
+                        var IdbsInDb = _databaseContext.IndividualDataBase.SingleOrDefault(s => s.Individual.Id == dc.Individual.Id && s.DataBase.Id == dc.DataBase.Id);
+
+                        if (IdbsInDb == null)
+                        {
+                            _databaseContext.IndividualDataBase.Add(dc);
+                        }
+                    }
+                }
                 
-                if (IdbsInDb == null)
-                    {
-                        _databaseContext.IndividualDataBase.Add(dc);
-                    }
-                }
-                foreach (var dc in pls)
+                if (model.PLIds != null)
                 {
-                    var IplsInDb = _databaseContext.InduvidualProgrammingLanguage.SingleOrDefault(s => s.Individual.Id == dc.Individual.Id && s.ProgrammingLanguage.Id == dc.ProgrammingLanguage.Id);
-
-                    if (IplsInDb == null)
+                    pls = model.PLIds.Select(id => _databaseContext.ProgrammingLanguage.Find(id))
+                    .Select(u => new IndividualProgrammingLanguage { ProgrammingLanguage = u, Individual = user }).ToList();
+                    foreach (var dc in pls)
                     {
-                        _databaseContext.InduvidualProgrammingLanguage.Add(dc);
+                        var IplsInDb = _databaseContext.InduvidualProgrammingLanguage.SingleOrDefault(s => s.Individual.Id == dc.Individual.Id && s.ProgrammingLanguage.Id == dc.ProgrammingLanguage.Id);
+
+                        if (IplsInDb == null)
+                        {
+                            _databaseContext.InduvidualProgrammingLanguage.Add(dc);
+                        }
                     }
                 }
-
                 var x = _databaseContext.Individual.FirstOrDefault(g => g.Email == model.Email);
                 var y = _databaseContext.Company.FirstOrDefault(g => g.Email == model.Email);
 
@@ -184,6 +189,14 @@ namespace ITJobsApp.Controllers
 
                 var x = _databaseContext.Individual.FirstOrDefault(g => g.Email == model.Email);
                 var y = _databaseContext.Company.FirstOrDefault(g => g.Email == model.Email);
+                var z = _databaseContext.Company.FirstOrDefault(g => g.Name.ToLower() == model.Name.ToLower());
+
+                if (z!=null)
+                {
+                    TempData[Constants.Message] = $"Firma s tim nazivom već postoji\n";
+                    TempData[Constants.ErrorOccurred] = true;
+                    return RedirectToAction(nameof(RegisterIndividual), new { retUrl = returnUrl });
+                }
 
                 if (x != null || y != null)
                 {
@@ -305,7 +318,8 @@ namespace ITJobsApp.Controllers
 
         public ViewResult Show(string id)
         {
-            Individual drug = _databaseContext.Individual.Where(i => i.Id.Equals(id.ToString())).FirstOrDefault();
+            Individual drug = _databaseContext.Individual.Include(p=>p.IndividualProgrammingLanguages).ThenInclude(i=>i.ProgrammingLanguage)
+                .Include(t=>t.IndividualDataBases).ThenInclude(p=>p.DataBase).Where(i => i.Id.Equals(id.ToString())).FirstOrDefault();
             return View(drug);
         }
     }

@@ -1,0 +1,18 @@
+﻿@model DataBaseViewModel
+<form asp-action="Create" method="POST">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <h3>
+        <a asp-action="Index" title="Povratak na prethodnu stranu">
+            <i class="arrow-left"></i>
+        </a>
+        Dodaj novi programski jezik
+    </h3>
+    <div class="form-group">
+        <label asp-for="Name">Ime: </label>
+        <input type="text" class="form-control" asp-for="Name">
+    </div>
+    <button type="submit" class="btn btn-primary">Spremi</button>
+    <a asp-action="Index">
+        <button type="button" class="btn btn-secondary">Odustani</button>
+    </a>
+</form>

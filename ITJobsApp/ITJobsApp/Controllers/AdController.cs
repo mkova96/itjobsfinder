@@ -198,5 +198,63 @@ namespace ITJobsApp.Controllers
         }
 
 
+        [HttpGet]
+        public ViewResult Edit(int id)
+        {
+            ViewData["Cats"] = _databaseContext.AdCategory.ToList();
+
+            var ses = _databaseContext.Ad.Include(t => t.AdCategory)
+            .FirstOrDefault(p => p.Id == id);
+
+            ViewData["Success"] = TempData["Success"];
+
+            var model = new EditAdViewModel
+            {
+                JobSummary = ses.JobSummary,
+                Id = ses.Id,
+                Location = ses.Location,
+                NumberOfWorkingHours = ses.NumberOfWorkingHours,
+                RequiredSkills=ses.RequiredSkills,
+                Title=ses.Title
+            };
+            return View(model);
+        }
+        [HttpPost]
+        public IActionResult Update(int id, EditAdViewModel model)
+        {
+            ViewData["Cats"] = _databaseContext.AdCategory.ToList();
+            if (id != 0)
+            {
+                model.Id = id;
+            }
+
+            if (ModelState.IsValid)
+            {
+                var ses = _databaseContext.Ad.Include(p => p.AdCategory).FirstOrDefault(m => m.Id == id);
+                ses.AdCategory = _databaseContext.AdCategory.ToList().First(c => c.Id == model.AdCategoryId);
+
+                ses.JobSummary = model.JobSummary;
+                ses.Location = model.Location;
+                ses.NumberOfWorkingHours = model.NumberOfWorkingHours;
+                ses.RequiredSkills = model.RequiredSkills;
+                ses.Title = model.Title;
+
+                TempData["Success"] = true;
+                _databaseContext.SaveChanges();
+
+                TempData[Constants.Message] = $"Oglas je promijenjen";
+                TempData[Constants.ErrorOccurred] = false;
+                return RedirectToAction(nameof(Index));
+
+            }
+            else
+            {
+                ViewData["Cats"] = _databaseContext.AdCategory.ToList();
+                return View("Edit", model);
+
+            }
+        }
+
+
     }
 }

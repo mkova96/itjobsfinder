@@ -1,0 +1,29 @@
+﻿@model IEnumerable<ProgrammingLanguage>
+<h2>
+    Programski jezici
+    <a asp-action="Add" class="btn btn-primary btn-sm">Kreiraj novi programski jezik</a>
+</h2>
+
+@if (@ViewData["Success"] != null)
+{
+    <div class="alert alert-success">
+        Programski jezik je kreiran
+    </div>
+}
+@if (!Model.Any())
+{
+    <h5 style="color: #778899">Trenutno nema programskih jezika</h5>
+}
+
+<ul class="list-group">
+    @foreach (ProgrammingLanguage g in Model)
+    {
+        <li class="list-group-item">
+            @g.Name
+            <a asp-action="Edit" asp-route-id="@g.Id" class="btn btn-secondary btn-sm">Izmjeni</a>
+            <form asp-action="Delete" asp-route-id="@g.Id" method="POST" style="display: inline-block">
+                <button type="submit" class="btn btn-danger btn-sm">Obriši</button>
+            </form>
+        </li>
+    }
+</ul>

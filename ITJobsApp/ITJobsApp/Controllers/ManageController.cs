@@ -391,15 +391,6 @@ namespace ITJobsApp.Controllers
                 _context.SaveChanges();
             }
 
-            var about = user.About;
-            if (model.About != about)
-            {
-                Company appuser = _context.Company.FirstOrDefault(u => u.Id == user.Id);
-                appuser.About = model.About;
-                _context.Entry(appuser).State = EntityState.Modified;
-                _context.SaveChanges();
-            }
-
             var city = user.City;
             if (model.City != city)
             {

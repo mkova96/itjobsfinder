@@ -13,12 +13,31 @@ namespace ITJobsApp.ViewModels
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy}", ApplyFormatInEditMode = true)]
         public DateTime Established { get; set; }
+        public string Username { get; set; }
+        [Required(ErrorMessage = "Morate unijeti podatke o firmi")]
         public string About { get; set; }
-        public string City { get; set; }
+
+        [Required(ErrorMessage = "Morate unijeti broj telefona firme")]
+        [DataType(DataType.PhoneNumber)]
         public string PhoneNumber { get; set; }
+
+        [Required(ErrorMessage = "Morate unijeti grad")]
+        [Display(Name = "Grad")]
+        public string City { get; set; }
+
+        [Required(ErrorMessage = "Morate unijeti vrstu poslovanja")]
+        [Display(Name = "Vrsta poslovanja")]
         public string BussinesType { get; set; }
+
+        [Required(ErrorMessage = "Poveznica slike firme je obavezna")]
+        [DataType(DataType.ImageUrl)]
         public string LogoLink { get; set; }
+
+        [Required(ErrorMessage = "Web adresa firme je obvezna")]
+        [DataType(DataType.Url)]
         public string WebAddress { get; set; }
+
+        [Range(1, 100000, ErrorMessage = "Broj radnika mora biti veći od 0")]
         public int NumberOfEmployees { get; set; }
 
 
