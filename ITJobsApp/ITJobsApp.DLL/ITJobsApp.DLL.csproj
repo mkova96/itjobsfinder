@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ITJobs.Model\ITJobs.Model.csproj" />
+    <ProjectReference Include="..\ITJobs.Model\ITJobsApp.Model.csproj" />
   </ItemGroup>
 
 </Project>

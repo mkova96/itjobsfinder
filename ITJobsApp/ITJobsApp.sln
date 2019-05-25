@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2000
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITJobsApp", "ITJobsApp\ITJobsApp.csproj", "{D596DA6C-F762-40F3-BE20-9D8CE8DA96C0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ITJobsApp.Web", "ITJobsApp\ITJobsApp.Web.csproj", "{D596DA6C-F762-40F3-BE20-9D8CE8DA96C0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITJobsApp.DLL", "ITJobsApp.DLL\ITJobsApp.DLL.csproj", "{140ACEAC-C4F2-45D7-B478-060F218E0050}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ITJobsApp.DLL", "ITJobsApp.DLL\ITJobsApp.DLL.csproj", "{140ACEAC-C4F2-45D7-B478-060F218E0050}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITJobs.Model", "ITJobs.Model\ITJobs.Model.csproj", "{0D6B7394-3205-4932-AF97-67D554409276}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ITJobsApp.Model", "ITJobs.Model\ITJobsApp.Model.csproj", "{0D6B7394-3205-4932-AF97-67D554409276}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

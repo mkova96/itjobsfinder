@@ -4440,9 +4440,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\MARIO\\source\\repos\\ITJobsApp\\ITJobs.Model\\ITJobs.Model.csproj",
-      "projectName": "ITJobs.Model",
-      "projectPath": "C:\\Users\\MARIO\\source\\repos\\ITJobsApp\\ITJobs.Model\\ITJobs.Model.csproj",
+      "projectUniqueName": "C:\\Users\\MARIO\\source\\repos\\ITJobsApp\\ITJobs.Model\\ITJobsApp.Model.csproj",
+      "projectName": "ITJobsApp.Model",
+      "projectPath": "C:\\Users\\MARIO\\source\\repos\\ITJobsApp\\ITJobs.Model\\ITJobsApp.Model.csproj",
       "packagesPath": "C:\\Users\\MARIO\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\MARIO\\source\\repos\\ITJobsApp\\ITJobs.Model\\obj\\",
       "projectStyle": "PackageReference",
